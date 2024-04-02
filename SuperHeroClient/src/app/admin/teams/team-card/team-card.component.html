@@ -1,0 +1,27 @@
+<div class="card">
+	<div class="card-header position-relative d-flex justify-content-between">
+		<div>
+			<h5 class="card-title text-primary">{{ team.teamName | uppercase }}</h5>
+			<div class="d-flex gap-4">
+				<p class="card-text text-secondary">Antal: {{ (team.superHeroes.length) || 0 }}</p>
+				<p class="card-text text-secondary">ID: {{ team.teamID }}</p>
+			</div>
+		</div>
+		<div class="d-flex gap-2 my-3">
+			<button type="button" class="btn btn-success bg-success px-3" (click)="edit()"><i class="fa-solid fa-pen-to-square"></i></button>
+			<button type="button" class="btn btn-danger bg-danger px-3" (click)="delete()"><i class="fa-solid fa-trash"></i></button>
+		</div>
+	</div>
+	<div class="card-body">
+		<div class="d-flex flex-wrap gap-5">
+			<div class="card shadow-sm" *ngFor="let superHero of team.superHeroes">
+				<div class="d-flex card-body">
+					<div class="d-flex gap-1">
+						<h5 class="card-title">{{ superHero.name | uppercase }}</h5>
+						<p class="card-text text-secondary">- {{ superHero.firstName }} {{ superHero.lastName }}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

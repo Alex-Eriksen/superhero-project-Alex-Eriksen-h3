@@ -1,0 +1,3 @@
+<div class="position-absolute bottom-0 start-50 translate-middle d-flex flex-column gap-1">
+	<notification (removeSelf)="RemoveNotification($event)" *ngFor="let notification of notificationList" [data]="notification"></notification>
+</div>

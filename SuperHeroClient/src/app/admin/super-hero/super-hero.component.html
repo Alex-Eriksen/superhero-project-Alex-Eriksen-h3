@@ -1,0 +1,61 @@
+<div class="container d-flex flex-column gap-3 my-2">
+	<div class="row">
+		<div class="col-6">
+			<div>
+				<label class="form-label">Superhelte Navn:</label>
+				<input class="form-control" [(ngModel)]="superHero.name">
+			</div>
+			<div>
+				<label class="form-label">Fornavn:</label>
+				<input class="form-control" [(ngModel)]="superHero.firstName">
+			</div>
+			<div>
+				<label class="form-label">Efternavn:</label>
+				<input class="form-control" [(ngModel)]="superHero.lastName">
+			</div>
+		</div>
+		<div class="col-6">
+			<div>
+				<label class="form-label">Hold:</label>
+				<select class="form-select" [(ngModel)]="superHero.team.teamID">
+					<option *ngFor="let team of teams" [value]="team.teamID">{{team.teamName}}</option>
+				</select>
+			</div>
+			<div>
+				<label class="form-label">Lokation:</label>
+				<input class="form-control" [(ngModel)]="superHero.place">
+			</div>
+			<div>
+				<label class="form-label">Debut År:</label>
+				<input class="form-control" [(ngModel)]="superHero.debut" type="number">
+			</div>
+		</div>
+	</div>
+	<div class="d-flex justify-content-start gap-2 my-2">
+		<button type="button" class="btn btn-primary" (click)="save()">Gem <i class="fa-solid fa-floppy-disk"></i></button>
+		<button type="button" class="btn btn-primary" (click)="cancel()">Annuller <i class="fa-solid fa-ban"></i></button>
+	</div>
+</div>
+<div class="container">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th scope="col">ID</th>
+				<th scope="col">Superhelte Navn</th>
+				<th scope="col">Fulde navn</th>
+				<th scope="col">Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let superHero of superHeroes">
+				<td>{{ superHero.id }}</td>
+				<td>{{ superHero.name }}</td>
+				<td>{{ superHero.firstName }} {{ superHero.lastName }}</td>
+				<td class="d-flex gap-2">
+					<button type="button" class="btn btn-success bg-success" (click)="edit(superHero)"><i class="fa-solid fa-pen-to-square"></i></button>
+					<button type="button" class="btn btn-danger bg-danger" (click)="delete(superHero)"><i class="fa-solid fa-trash"></i></button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

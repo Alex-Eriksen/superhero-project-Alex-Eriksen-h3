@@ -1,0 +1,50 @@
+<div *ngIf="team.teamID != 0" style="z-index: 99;" class="position-absolute top-50 start-50 translate-middle w-50 h-75 bg-light shadow-lg rounded">
+	<div class="m-2">
+		<label class="form-label">Hold Navn:</label>
+		<input class="form-control" [(ngModel)]="team.teamName">
+	</div>
+	<table class="table table-striped">
+		<thead class="bg-white">
+			<div class="position-absolute bottom-0 end-0 m-3 d-flex gap-2">
+				<button type="button" class="btn btn-primary bg-primary px-3" (click)="save()">Gem <i class="fa-solid fa-floppy-disk"></i></button>
+				<button type="button" class="btn btn-primary bg-primary px-3" (click)="cancel()">Annuller <i class="fa-solid fa-ban"></i></button>
+			</div>
+			<tr>
+				<th>ID</th>
+				<th>Superhelte Navn</th>
+				<th>Fulde Navn</th>
+				<th>Hold</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let superHero of superHeroesToUpdate">
+				<td>{{ superHero.id }}</td>
+				<td>{{ superHero.name | uppercase }}</td>
+				<td>{{ superHero.firstName }} {{ superHero.lastName }}</td>
+				<td>
+					<select class="form-select" [(ngModel)]="superHero.teamID">
+						<option *ngFor="let team of teams" [value]="team.teamID">{{ team.teamName }}</option>
+					</select>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div *ngIf="creating" style="z-index: 99;" class="position-absolute top-50 start-50 translate-middle w-50 bg-light shadow-lg rounded">
+	<div class="m-2">
+		<label class="form-label">Nye Hold Navn:</label>
+		<input class="form-control" [(ngModel)]="newTeamName">
+	</div>
+	<div class="m-3 d-flex gap-2">
+		<button type="button" class="btn btn-primary bg-primary px-3" (click)="createNew()">Gem <i class="fa-solid fa-floppy-disk"></i></button>
+		<button type="button" class="btn btn-primary bg-primary px-3" (click)="cancel()">Annuller <i class="fa-solid fa-ban"></i></button>
+	</div>
+</div>
+
+<div class="container pt-4 d-flex flex-column gap-2">
+	<div class="w-50">
+		<button class="btn btn-primary bg-primary" (click)="create()">Nyt hold <i class="fa-solid fa-plus"></i></button>
+	</div>
+	<team-card *ngFor="let team of teams" (deleteEmitter)="delete($event)" (editEmitter)="edit($event)" [team]="team"></team-card>
+</div>

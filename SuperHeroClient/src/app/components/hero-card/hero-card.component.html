@@ -1,0 +1,19 @@
+<div class="card" style="width: 20rem;">
+	<div class="card-header">
+		<h5 class="card-title text-primary">{{ superHero.name | uppercase }}</h5>
+		<p class="card-text text-secondary">{{ superHero.firstName }} {{ superHero.lastName }}</p>
+	</div>
+	<div class="card-body">
+		<ul class="list-group list-group-flush">
+			<li class="list-group-item">
+				<p class="text-secondary">Hold</p> {{ (superHero.team.teamName) || 'Intet Hold' }}
+			</li>
+			<li class="list-group-item">
+				<p class="text-secondary">Lokation</p> {{ superHero.place }}
+			</li>
+			<li class="list-group-item">
+				<p class="text-secondary">Debut År</p> {{ superHero.debut }}
+			</li>
+		</ul>
+	</div>
+</div>
